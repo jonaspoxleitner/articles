@@ -22,8 +22,6 @@ Sed blandit libero volutpat sed. Erat imperdiet sed euismod nisi. Consequat id p
 
 ## Topic2
 
-
-
 Tristique senectus et netus et. Phasellus faucibus scelerisque eleifend donec pretium. Ut enim blandit volutpat maecenas volutpat blandit aliquam. Egestas egestas fringilla phasellus faucibus scelerisque eleifend donec. Tincidunt eget nullam non nisi est sit amet facilisis magna. Nisl nunc mi ipsum faucibus vitae aliquet. Sociis natoque penatibus et magnis dis parturient. Adipiscing commodo elit at imperdiet dui accumsan sit. Neque vitae tempus quam pellentesque nec nam. Nec ultrices dui sapien eget mi proin sed libero. Nec ullamcorper sit amet risus nullam eget.
 
 <img src="./media/tile_screen_recording.gif" width="400">
