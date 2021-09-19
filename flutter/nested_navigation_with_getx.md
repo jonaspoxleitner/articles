@@ -2,7 +2,7 @@
 
 # Nested navigation with Getx
 
-Nested navigation is a useful approach when navigation inside a screen is required or when the provided designs require specific transitions to and from the screens. This article will cover the basics for nested navigation in Flutter with the Getx framework.
+Nested navigation is a useful approach when navigation inside a screen is required or when the provided designs requires specific transitions to and from a dialog. This article will cover the basics for nested navigation in Flutter with the Getx framework.
 
 ***
 
@@ -12,6 +12,7 @@ Nested navigation is a useful approach when navigation inside a screen is requir
   - [Arguments](#arguments)
   - [State management](#state-management)
   - [Bottom navigation](#bottom-navigation)
+  - [Problems](#problems)
 
 ## Introduction
 
@@ -36,7 +37,7 @@ class NestedNavigation extends StatelessWidget {
 }
 ```
 
-Basically, this `MaterialApp` supports the naviation to our `DialogWrapper` and our `HomeScreen'.
+Basically, this root of our application supports the navigation to our `DialogWrapper` and our `HomeScreen`. We are now also able to navigate to this screens with named routes, wich improves the readability of our code.
 
 ## Navigator
 
@@ -86,15 +87,15 @@ class DialogWrapper extends StatelessWidget {
 }
 ```
 
-To make it a little bit easier, I created the class `DialogNavigation`, which handles all the available keys for now and also stores the id of the nested navigator. From now on, we can navigate inside the dialog, and we can also close the whole dialog without having to think about the right animation with `Get.back()`. There is also an option to provide an id inside the `Get.back()` function. As you might have already guessed: By providing the `DialogNavigation.id` to the function, we are able to navigate back inside our nested navigation.
+To make it a little bit easier, I created the class `DialogNavigation`, which handles all the available keys for now and also stores the id of the nested navigator. It is also recommented store the Ids for the navigation in a seperate class when using multiple nested navigators to prevent duplicate keys. From now on, we can navigate inside the dialog, and we can also close the whole dialog without having to think about the right animation with `Get.back()`. There is also an option to provide an id inside the `Get.back()` function. As you might have already guessed: By providing the `DialogNavigation.id` to the function, we are able to navigate back inside our nested navigation.
 
 ## Arguments
 
-Next, we might want to use Get.arguments, to move data from the current screen to the next one. Unfortunately, Get.arguments only works when using the main navigator inside your application. Here's a simple experiment to show the problems I encountered:
+Next, we might want to use `Get.arguments`, to move data from the current screen to the next. Unfortunately, `Get.arguments` only works when using the main navigator inside our application. Here's a simple experiment to show the problems I encountered:
 
 First, we navigate to the dialog with `Get.toNamed('/dialog', arguments: 'test')` and after that, we navigate to the next screen inside the nested naviation with `Get.toNamed(DialogNavigation.dialogTwo, id: DialogNavigation.id, arguments: 'test 2')`. In the following screen recording, you can see, that the second screen also shows 'test'.
 
-<img src="./media/nested_navigation_arguments.gif" width="400">
+<img src="./media/nested_navigation_with_getx_arguments.gif" width="400">
 
 Now it's getting a bit complicated: If Get.arguments doesn't work, how should we then pass arguments between screens? Well, as it turns out, with the RouteSettings in our onGenerateRoute inside the Navigator widget, we are able to use the arguments with settings.arguments, and we're able to pass them als normal parameters to our screens.
 
@@ -156,7 +157,7 @@ The `DialogController` will then be available for all nested routes.
 
 As I've mentioned above, nested navigation is also useful when using bottom navigation. With this approach, the `BottomNavigationBar` will always be the same and this part of the screen doesn't need to be repainted. First of all, let me show you what exactly we want to accomplish:
 
-<img src="./media/nested_navigation_bottom_navigation_bar.gif" width="400">
+<img src="./media/nested_navigation_with_getx_bottom_navigation.gif" width="400">
 
 Ok, let's take a step back again and analyze what exactly happens in the screen recording:
 
@@ -243,6 +244,10 @@ class HomeController extends GetxController {
 
 The `selectHome()` method seems pretty simple, but what happens inside the `selectSettings()` method? Well, at first the method checks if the current state is already the settings route. This could mean that the nested navigator is used and we don't really know where the user is at the moment. Then we try to pop current routes in our nested navigator by getting the current NavigatorState from Get itself. Make sure to wrap this inside a try-catch.
 
+## Problems
+
+There is still one unfortunate issue with the current implementation of the nested navigation: It is not possible to use the `Get.until((route) => route.settings.name == '/route-name')` method to pop all routes until the route called '/route-name', because `route.settings.name` always returns null.
+
 ***
 
-Thank you so much for reading this article to the end.
+> Thank you so much for reading this article to the end! If you're interested in the full implementation of the topic, check out both files in '/flutter/code/' and feel free to contact me with your ideas or improvements via Twitter or Mail. You can find both links and mail addresses on [jonaspoxleitner.com](https://jonaspoxleitner.com).
