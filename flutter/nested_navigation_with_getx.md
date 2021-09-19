@@ -6,9 +6,16 @@ Nested navigation is a useful approach when navigation inside a screen is requir
 
 ***
 
-## What is nested navigation?
+## Table of Contents
+  - [Introduction](#introduction)
+  - [Navigator](#navigator)
+  - [Arguments](#arguments)
+  - [State management](#state-management)
+  - [Bottom navigation](#bottom-navigation)
 
-Have you ever had the challenge to navigate on a screen while still showing the BottomNavigationBar or wanted to navigate inside a dialog? Well, thats what nested navigation is for. With this approach, we can navigate independet from the root navigator of our application. First of all, we have to implement the root navigation for our app by following the Getx docs, which will result in the following `GetMaterialApp`:
+## Introduction
+
+Have you ever had the challenge to navigate on a screen while still showing the `BottomNavigationBar` or wanted to navigate inside a dialog? Well, thats what nested navigation is for. With this approach, we can navigate independet from the root navigator of our application. First of all, we have to implement the root navigation for our app by following the Getx docs, which will result in the following `GetMaterialApp`:
 
 ```
 class NestedNavigation extends StatelessWidget {
@@ -81,7 +88,7 @@ class DialogWrapper extends StatelessWidget {
 
 To make it a little bit easier, I created the class `DialogNavigation`, which handles all the available keys for now and also stores the id of the nested navigator. From now on, we can navigate inside the dialog, and we can also close the whole dialog without having to think about the right animation with `Get.back()`. There is also an option to provide an id inside the `Get.back()` function. As you might have already guessed: By providing the `DialogNavigation.id` to the function, we are able to navigate back inside our nested navigation.
 
-## What happended to Get.arguments?
+## Arguments
 
 Next, we might want to use Get.arguments, to move data from the current screen to the next one. Unfortunately, Get.arguments only works when using the main navigator inside your application. Here's a simple experiment to show the problems I encountered:
 
@@ -147,11 +154,11 @@ The `DialogController` will then be available for all nested routes.
 
 ## Bottom navigation
 
-As I've mentioned above, nested navigation is also useful when using bottom navigation. With this approach, the bottom navigation will always be the same and the screen doesn't need to be repainted. First of all, let me show you what exactly we want to accomplish.
+As I've mentioned above, nested navigation is also useful when using bottom navigation. With this approach, the `BottomNavigationBar` will always be the same and this part of the screen doesn't need to be repainted. First of all, let me show you what exactly we want to accomplish:
 
 <img src="./media/nested_navigation_bottom_navigation_bar.gif" width="400">
 
-Ok, let's take a step back again and analyze what exactly happens in the video:
+Ok, let's take a step back again and analyze what exactly happens in the screen recording:
 
 1. The user is able to navigate between the home and the settings screen.
 2. When navigating to the detail in settings, the bottom navigation bar is still visible.
@@ -179,7 +186,7 @@ class NestedNavigation extends StatelessWidget {
 }
 ```
 
-Our HomeScreen now listens for changes to the HomeController and is used for changing the current screen.
+Our `HomeScreen` now listens for changes to the `HomeController` and is used for changing the current screen.
 
 ```
 class HomeScreen extends GetView<HomeController> {
@@ -239,4 +246,3 @@ The `selectHome()` method seems pretty simple, but what happens inside the `sele
 ***
 
 Thank you so much for reading this article to the end.
-I should provide mor information here.
