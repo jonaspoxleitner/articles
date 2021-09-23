@@ -250,4 +250,4 @@ There is still one unfortunate issue with the current implementation of the nest
 
 ***
 
-> Thank you so much for reading this article to the end! If you're interested in the full implementation of the topic, check out both files in '/flutter/code/' and feel free to contact me with your ideas or improvements via Twitter or Mail. You can find both links and mail address on [jonaspoxleitner.com](https://jonaspoxleitner.com).
+> Thank you so much for reading this article to the end! If you're interested in the full implementation of the topic, check out both files in '/flutter/code/' and feel free to contact me with your ideas or improvements via Twitter or Mail. You can find both link and mail address on [jonaspoxleitner.com](https://jonaspoxleitner.com).
