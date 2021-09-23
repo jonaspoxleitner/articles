@@ -6,7 +6,7 @@ short overview
 
 ## Table of Contents
 - [Flutter](#flutter)
-- [Nested Navigation with Getx](#nested-navigation-with-getx)
+    - [Nested Navigation with Getx](#nested-navigation-with-getx)
 
 ## Flutter
 
