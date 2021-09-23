@@ -7,12 +7,12 @@ Nested navigation is a useful approach when navigation inside a screen is requir
 ***
 
 ## Table of Contents
-  - [Introduction](#introduction)
-  - [Navigator](#navigator)
-  - [Arguments](#arguments)
-  - [State management](#state-management)
-  - [Bottom navigation](#bottom-navigation)
-  - [Problems](#problems)
+- [Introduction](#introduction)
+- [Navigator](#navigator)
+- [Arguments](#arguments)
+- [State management](#state-management)
+- [Bottom navigation](#bottom-navigation)
+- [Problems](#problems)
 
 ## Introduction
 
@@ -37,7 +37,7 @@ class NestedNavigation extends StatelessWidget {
 }
 ```
 
-Basically, this root of our application supports the navigation to our `DialogWrapper` and our `HomeScreen`. We are now also able to navigate to this screens with named routes, wich improves the readability of our code.
+Basically, this root of our application supports the navigation to our `DialogWrapper` and our `HomeScreen`. We are now also able to navigate to this screens with named routes, which improves the readability of our code.
 
 ## Navigator
 
@@ -87,7 +87,7 @@ class DialogWrapper extends StatelessWidget {
 }
 ```
 
-To make it a little bit easier, I created the class `DialogNavigation`, which handles all the available keys for now and also stores the id of the nested navigator. It is also recommented store the Ids for the navigation in a seperate class when using multiple nested navigators to prevent duplicate keys. From now on, we can navigate inside the dialog, and we can also close the whole dialog without having to think about the right animation with `Get.back()`. There is also an option to provide an id inside the `Get.back()` function. As you might have already guessed: By providing the `DialogNavigation.id` to the function, we are able to navigate back inside our nested navigation.
+To make it a little bit easier, I created the class `DialogNavigation`, which handles all the available keys for now and also stores the id of the nested navigator. It is also recommented store the ids for the navigation in a seperate class when using multiple nested navigators to prevent duplicate keys. From now on, we can navigate inside the dialog, and we can also close the whole dialog without having to think about the right animation with `Get.back()`. There is also an option to provide an id inside the `Get.back()` function. As you might have already guessed: By providing the `DialogNavigation.id` to the function, we are able to navigate back inside our nested navigation.
 
 ## Arguments
 
@@ -97,7 +97,7 @@ First, we navigate to the dialog with `Get.toNamed('/dialog', arguments: 'test')
 
 <img src="./media/nested_navigation_with_getx_arguments.gif" width="400">
 
-Now it's getting a bit complicated: If Get.arguments doesn't work, how should we then pass arguments between screens? Well, as it turns out, with the RouteSettings in our onGenerateRoute inside the Navigator widget, we are able to use the arguments with settings.arguments, and we're able to pass them als normal parameters to our screens.
+Now it's getting a bit complicated: If `Get.arguments` doesn't work, how should we then pass arguments between screens? Well, as it turns out, with the RouteSettings in our onGenerateRoute inside the `Navigator` widget, we are able to use the arguments with `settings.arguments`, and we're able to pass them als normal parameters to our screens.
 
 ```
 class DialogWrapper extends StatelessWidget {
@@ -140,7 +140,7 @@ With this, modification, we can now pass arguments to the screens inside the the
 
 ## State management
 
-As you may know, state management with Getx is pretty simple when using bindings to push and pop routes. Controllers will then be automatically initialized and disposed when the screen is pushed and poped respecively. This apporoach can also be used with nested navigation, although I recommend using a single controller for your screens inside the nested navigator. In our current code, the GetPage provided inside our GetMaterialApp would look similar to the following code:
+As you may know, state management with Getx is pretty simple when using bindings to push and pop routes. Controllers will then be automatically initialized and disposed when the screen is pushed and poped respecively. This apporoach can also be used with nested navigation, although I recommend using a single controller for your screens inside the nested navigator. In our current code, the `GetPage` provided inside our `GetMaterialApp` would look similar to the following code:
 
 ```
 GetPage(
@@ -165,7 +165,7 @@ Ok, let's take a step back again and analyze what exactly happens in the screen 
 2. When navigating to the detail in settings, the bottom navigation bar is still visible.
 3. When tapping on the settings-item in the bottom navigation again, the the app navigates back to the previous screen inside the settings-tab.
 
-To accomplish this, I had to make a few changes to our `GetMaterialApp`, which now initializes a controller for handling the taps in the BottomNavigationBar.
+To accomplish this, I had to make a few changes to our `GetMaterialApp`, which now initializes a controller for handling the taps in the `BottomNavigationBar`.
 
 ```
 class NestedNavigation extends StatelessWidget {
@@ -242,7 +242,7 @@ class HomeController extends GetxController {
 }
 ```
 
-The `selectHome()` method seems pretty simple, but what happens inside the `selectSettings()` method? Well, at first the method checks if the current state is already the settings route. This could mean that the nested navigator is used and we don't really know where the user is at the moment. Then we try to pop current routes in our nested navigator by getting the current NavigatorState from Get itself. Make sure to wrap this inside a try-catch.
+The `selectHome()` method seems pretty simple, but what happens inside the `selectSettings()` method? Well, at first the method checks if the current state is already the settings route. This could mean that the nested navigator is used and we don't really know where the user is at the moment. Then we try to pop current routes in our nested navigator by getting the current `NavigatorState` from Get itself. Make sure to wrap this inside a try-catch.
 
 ## Problems
 
