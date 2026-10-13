@@ -18,4 +18,4 @@ Nested navigation is a useful approach when navigation inside a screen is requir
 
 ***
 
-> Thank you so much for reading my articles! If you're interested in the full implementation of the topic, check out the code directories in the article directory and feel free to contact me with your ideas or improvements via Twitter or Mail. You can find both links and mail address on [jonaspoxleitner.com](https://jonaspoxleitner.com).
+> Thank you so much for reading my articles! If you're interested in the full implementation of the topic, check out the code directories in the article directory and feel free to contact me with your ideas or improvements. You can find ways to reach out on [vlkn.io](https://vlkn.io).
